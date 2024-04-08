@@ -1,5 +1,3 @@
-SQL SERVER NANAGEMENT STUUDIO
-
 --ab loomine
 create database SmirnovLOGTIpv22;
 
@@ -13,5 +11,13 @@ isikukood char(11) unique,
 aadress TEXT,
 sisseastumis_kp date
 );
---primary key - primaarne vıti mis annab unikaalsus
---identity(1,1) - m‰‰rab iga¸hele oma numbri
+--primary key - primaarne v√µti mis annab unikaalsus
+--identity(1,1) - m√§√§rab iga√ºhele oma numbri
+
+--kuva k√µik mis on tabelis
+select * from opilane;
+--andmete lisamine
+insert into opilane(eesnimi, perenimi, isikukood, aadress, sisseastumis_kp)
+values(
+'Ronalda', 'Cristian', '10317306512', 'Tallinn', '2023-08-16')
+select * from opilane;
