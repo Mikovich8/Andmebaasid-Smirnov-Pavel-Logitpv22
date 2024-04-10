@@ -1,0 +1,12 @@
+cd desktop
+git init andmebaasidLOGITpv22
+cd andmebaasidLOGITpv22
+git config --global user.name "Pavel Smirnov"
+git config --global user.email "pahanblandex888@gmail.com"
+git config --global --list
+git status
+------
+kui tekkinud uus fail ja salvestatud, siis on vaja add ja commit
+git add.
+git commit -a -m "põhi ab sõnad on lisatud"
+git push
