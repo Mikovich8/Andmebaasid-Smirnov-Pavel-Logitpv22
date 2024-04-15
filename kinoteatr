@@ -1,0 +1,72 @@
+
+create table filmtype(
+	filmtypeID int primary key identity(1,1),
+	filmtype varchar(25),
+	kirjeldus text);
+
+select * from filmtype;
+insert into filmtype (filmtype, kirjeldus)
+values ('30', 'väga põnev 3d efekt, kasuta prillid');
+
+create table zanr(
+	zanrID int primary key identity(1,1),
+	zanrNimi varchar(25),
+	zanrKirjeldus text);
+insert into zanr (zanrNimi, zanrKirjeldus)
+values ('draama', 'tõsine süžee');
+
+select * from zanr;
+
+create table rezisor(
+	rezisorID int primary key identity(1,1),
+	eesnimi varchar(25),
+	perenimi varchar(25));
+insert into rezisor (eesnimi, perenimi)
+values ('Pablo', 'Escobar');
+select * from rezisor;
+
+
+create table film(
+	filmID int primary key identity(1,1),
+	filmnimetus varchar(25),
+	zanrID int,
+	pikkus int,
+	rezisorID int,
+	filmTypeID int,
+	reklaam image);
+insert into film (filmnimetus, zanrID, pikkus, rezisorID, filmTypeID)
+values ('Upal s Velosipeda', '2', '2', '2', '2');
+select * from film	
+	
+	alter table film add foreign key (filmtypeID)
+	references filmtype(filmTypeID);
+
+	alter table kinokava add foreign key (filmNimetus)
+	references film(filmID);
+
+create table piletiMyyk(
+piletiMyykID int primary key identity(1,1),
+kogus int,
+kinokavaID int,
+);
+insert into piletiMyyk(kogus, kinokavaID)
+values ('25', '9');
+select * from piletiMyyk;
+
+create table kinokava(
+kinokavaID int primary key identity(1,1),
+kuupaev datetime,
+filmnimetus int,
+piletihind int,
+);
+insert into kinokava(kuupaev, filmnimetus, piletihind)
+values ('2024-01-25 19:00', '3', '8');
+select * from kinokava;
+
+
+select * from piletiMyyk;
+select * from kinokava;
+select * from film;
+select * from rezisor;
+select * from zanr;
+select * from filmtype;
