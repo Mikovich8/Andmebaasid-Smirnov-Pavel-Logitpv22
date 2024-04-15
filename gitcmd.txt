@@ -1,4 +1,5 @@
 cd desktop
+git clone
 git init andmebaasidLOGITpv22
 cd andmebaasidLOGITpv22
 git config --global user.name "Pavel Smirnov"
