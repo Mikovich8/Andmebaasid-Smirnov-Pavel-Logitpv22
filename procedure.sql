@@ -91,3 +91,17 @@ as
 select COUNT(*) as 'filmide arv' from film;
 
 exec filmidearv;
+
+create procedure lisafilm
+@uusfilm varchar(50),
+@kestvus int,
+@rezisoor varchar(50),
+@aasta int
+as
+begin
+insert into film (filmnimetus, kestvus, rezisoor, v_aasta)
+values (@uusfilm, @kestvus, @rezisoor, @aasta);
+select * from film;
+end;
+
+exec lisafilm 'test', 222, 'test', 2000;
