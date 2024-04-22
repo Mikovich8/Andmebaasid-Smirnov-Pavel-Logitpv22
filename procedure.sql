@@ -86,4 +86,8 @@ end;
 
 exec kustutaFilm 32;
 
+create procedure filmidearv
+as
+select COUNT(*) as 'filmide arv' from film;
 
+exec filmidearv;
