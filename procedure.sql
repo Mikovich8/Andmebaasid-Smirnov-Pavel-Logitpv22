@@ -105,3 +105,15 @@ select * from film;
 end;
 
 exec lisafilm 'test', 222, 'test', 2000;
+
+create procedure uuendarezisoorfilmis
+@uusrezisoor varchar(50),
+@filmnimetus varchar(50)
+as
+begin
+select * from film where filmnimetus=@filmnimetus;;
+update film set rezisoor=@uusrezisoor
+where filmnimetus=@filmnimetus
+select * from film where filmnimetus=@filmnimetus;;
+end;
+exec uuendarezisoorfilmis 'Oscar Luts', 'test';
