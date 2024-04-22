@@ -63,3 +63,16 @@ insert into film (filmnimetus, kestvus, rezisoor, v_aasta) values ('Caddyshack I
 insert into film (filmnimetus, kestvus, rezisoor, v_aasta) values ('40 Days and 40 Nights', 92, 'Marlyn Crocker', 2000);
 
 --mackaroo.com
+
+create procedure otsing1taht
+@taht char(1)
+as
+begin
+	select * from film
+	where filmnimetus like concat(@taht,'%');
+end;
+
+--käivitamine
+exec otsing1taht 'G';
+
+
