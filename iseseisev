@@ -1,0 +1,88 @@
+create table klient(
+	ID int primary key identity(1,1),
+	eesnimi varchar(50),
+	perenimi varchar(50));
+
+
+CREATE TABLE ost (
+	ID INT PRIMARY KEY IDENTITY(1,1),
+	kliendi_ID INT,
+	toote_ID INT,
+	FOREIGN KEY (kliendi_ID) REFERENCES klient(ID),
+	FOREIGN KEY (toote_ID) REFERENCES klient(ID)
+);
+
+
+create table toode (
+	ID int primary key identity(1,1),
+	tootenimi varchar(100),
+	uhikuhind numeric,
+	uhik varchar(2));
+
+
+
+grant select, insert on klient to opilanePavel
+
+use iseseisevSmirnov
+
+create table logi (
+	ID int primary key identity(1,1),
+	kasutaja varchar(100),
+	kuupaev datetime,
+	sisestatudAndmed varchar(200));
+
+
+CREATE TRIGGER lisamine
+ON ost
+FOR INSERT
+AS
+BEGIN
+	INSERT INTO logi (kuupaev, kasutaja, sisestatudAndmed)
+	SELECT
+		GETDATE(),
+		USER,
+		CONCAT(
+			CAST(inserted.kliendi_ID AS VARCHAR), ', ',
+			CAST(inserted.toote_ID AS VARCHAR), ', ',
+			'ost on lisatud'
+		)
+	FROM inserted;
+END;
+
+
+CREATE PROCEDURE uuendamine
+	@uuskliendi_ID VARCHAR(50),
+	@kliendi_ID VARCHAR(50)
+AS
+BEGIN
+	SELECT * 
+	FROM ost 
+	WHERE kliendi_ID = @kliendi_ID;
+	UPDATE ost 
+	SET kliendi_ID = @uuskliendi_ID
+	WHERE kliendi_ID = @kliendi_ID;
+	SELECT * FROM ost 
+	WHERE kliendi_ID = @uuskliendi_ID;
+	SELECT * FROM logi;
+END;
+
+insert into ost (kliendi_ID, toote_ID)
+values
+('1', '1')
+select * from ost;
+select * from logi;
+
+insert into toode(tootenimi, uhikuhind, uhik)
+values
+('kartul', '5', '20')
+select * from ost;
+select * from logi;
+select * from toode;
+
+insert into klient(eesnimi, perenimi)
+values
+('Masha', 'Ahsam')
+select * from klient;
+
+select * from ost;
+select * from logi;
